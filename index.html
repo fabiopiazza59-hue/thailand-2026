@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,10 +9,10 @@
   <meta name="apple-mobile-web-app-title" content="Thailand 🇹🇭">
   <meta name="theme-color" content="#f59e0b">
   <title>Thailand Trip 2026</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     * {
       margin: 0;
@@ -141,7 +142,7 @@
       margin-top: 2rem;
     }
     
-    /* Main App - Hidden until unlocked */
+    /* Main App */
     .app {
       display: none;
     }
@@ -218,7 +219,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.5rem;
       border: none;
       background: transparent;
       border-radius: 0.75rem;
@@ -238,7 +239,7 @@
     }
     
     .nav-btn span.label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       color: #78716c;
     }
@@ -313,9 +314,19 @@
       color: #047857;
     }
     
+    .flight-badge.internal {
+      background: #fef3c7;
+      color: #b45309;
+    }
+    
     .flight-badge.return {
       background: #dbeafe;
       color: #1d4ed8;
+    }
+    
+    .flight-badge.transfer {
+      background: #f3e8ff;
+      color: #7c3aed;
     }
     
     .flight-date {
@@ -336,13 +347,17 @@
     }
     
     .flight-time {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #292524;
     }
     
+    .flight-time.small {
+      font-size: 1.25rem;
+    }
+    
     .flight-city {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: #57534e;
     }
@@ -354,7 +369,7 @@
     
     .flight-line {
       flex: 1;
-      margin: 0 1rem;
+      margin: 0 0.75rem;
       position: relative;
       height: 2px;
       border-top: 2px dashed #fcd34d;
@@ -369,8 +384,9 @@
       color: white;
       padding: 0.25rem 0.5rem;
       border-radius: 9999px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
+      white-space: nowrap;
     }
     
     .flight-info {
@@ -378,6 +394,7 @@
       gap: 1rem;
       padding-top: 0.75rem;
       border-top: 1px solid #f5f5f4;
+      flex-wrap: wrap;
     }
     
     .flight-info-item {
@@ -386,6 +403,15 @@
       gap: 0.5rem;
       font-size: 0.75rem;
       color: #57534e;
+    }
+    
+    .price-tag {
+      background: #ecfdf5;
+      color: #047857;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
     
     /* Timeline */
@@ -416,6 +442,10 @@
       background: #3b82f6;
     }
     
+    .timeline-dot.purple {
+      background: #8b5cf6;
+    }
+    
     .timeline-content {
       background: #fafaf9;
       border-radius: 0.75rem;
@@ -426,6 +456,10 @@
       background: #eff6ff;
     }
     
+    .timeline-content.purple {
+      background: #f5f3ff;
+    }
+    
     .timeline-date {
       font-size: 0.7rem;
       font-weight: 600;
@@ -434,6 +468,10 @@
     
     .timeline-date.blue {
       color: #2563eb;
+    }
+    
+    .timeline-date.purple {
+      color: #7c3aed;
     }
     
     .timeline-title {
@@ -510,6 +548,7 @@
       display: flex;
       gap: 0.5rem;
       margin-bottom: 0.25rem;
+      flex-wrap: wrap;
     }
     
     .hotel-badge {
@@ -519,6 +558,11 @@
       font-size: 0.7rem;
       font-weight: 600;
       border-radius: 9999px;
+    }
+    
+    .hotel-badge.price {
+      background: #ecfdf5;
+      color: #047857;
     }
     
     .hotel-nights {
@@ -536,6 +580,12 @@
       font-size: 0.875rem;
       color: #d97706;
       font-weight: 500;
+    }
+    
+    .hotel-checkin {
+      font-size: 0.7rem;
+      color: #78716c;
+      margin-top: 0.25rem;
     }
     
     .hotel-expand {
@@ -636,6 +686,170 @@
     .activities-list li::before {
       content: '•';
       color: #f59e0b;
+    }
+    
+    /* Daily Planner */
+    .day-card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #f5f5f4;
+    }
+    
+    .day-header {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #fef3c7, #ffedd5);
+    }
+    
+    .day-header.travel {
+      background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+    }
+    
+    .day-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .day-number {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: #f59e0b;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    
+    .day-number.travel {
+      background: #3b82f6;
+    }
+    
+    .day-title {
+      font-weight: 700;
+      color: #292524;
+    }
+    
+    .day-location {
+      font-size: 0.75rem;
+      color: #78716c;
+    }
+    
+    .day-expand {
+      color: #a8a29e;
+      transition: transform 0.3s;
+    }
+    
+    .day-expand.open {
+      transform: rotate(180deg);
+    }
+    
+    .day-details {
+      display: none;
+      padding: 1.25rem;
+    }
+    
+    .day-details.open {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .activity-section {
+      margin-bottom: 1rem;
+    }
+    
+    .activity-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .activity-section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #78716c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .activity-item {
+      background: #fafaf9;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .activity-item.highlight {
+      background: linear-gradient(135deg, #fef3c7, #ffedd5);
+      border: 1px solid #fcd34d;
+    }
+    
+    .activity-time {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #f59e0b;
+      min-width: 3rem;
+    }
+    
+    .activity-content {
+      flex: 1;
+    }
+    
+    .activity-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #292524;
+    }
+    
+    .activity-desc {
+      font-size: 0.75rem;
+      color: #78716c;
+    }
+    
+    .activity-tags {
+      display: flex;
+      gap: 0.25rem;
+      margin-top: 0.25rem;
+      flex-wrap: wrap;
+    }
+    
+    .activity-tag {
+      font-size: 0.6rem;
+      padding: 0.125rem 0.375rem;
+      border-radius: 9999px;
+      font-weight: 500;
+    }
+    
+    .activity-tag.fabio {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    
+    .activity-tag.ana {
+      background: #fce7f3;
+      color: #be185d;
+    }
+    
+    .activity-tag.luca {
+      background: #d1fae5;
+      color: #047857;
+    }
+    
+    .activity-tag.family {
+      background: #fef3c7;
+      color: #b45309;
     }
     
     /* Documents */
@@ -1069,6 +1283,32 @@
       margin-top: 0.25rem;
     }
     
+    /* Budget Card */
+    .budget-card {
+      background: linear-gradient(135deg, #047857, #059669);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .budget-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    
+    .budget-total {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .budget-breakdown {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+    
     /* Modal */
     .modal-overlay {
       display: none;
@@ -1191,31 +1431,37 @@
       margin-bottom: 1rem;
     }
   </style>
+
 </head>
 <body>
-  
+
   <!-- Lock Screen -->
+
   <div class="lock-screen" id="lockScreen">
     <div class="lock-icon">🔐</div>
     <h1 class="lock-title">Thailand Trip</h1>
     <p class="lock-subtitle">Enter password to continue</p>
-    
-    <div class="lock-input-container">
-      <input 
-        type="password" 
-        class="lock-input" 
-        id="passwordInput" 
-        placeholder="Password"
-        autocomplete="off"
-      >
-      <button class="lock-btn" onclick="checkPassword()">Unlock</button>
-      <div class="lock-error" id="lockError">❌ Wrong password, try again</div>
-    </div>
-    
-    <p class="lock-hint">🔒 Private family trip info</p>
+
+```
+<div class="lock-input-container">
+  <input 
+    type="password" 
+    class="lock-input" 
+    id="passwordInput" 
+    placeholder="Password"
+    autocomplete="off"
+  >
+  <button class="lock-btn" onclick="checkPassword()">Unlock</button>
+  <div class="lock-error" id="lockError">❌ Wrong password, try again</div>
+</div>
+
+<p class="lock-hint">🔒 Private family trip info</p>
+```
+
   </div>
 
   <!-- Main App -->
+
   <div class="app" id="app">
     <!-- Header -->
     <div class="header">
@@ -1225,484 +1471,1214 @@
         <p class="family">Fabio, Ana & Luca 👨‍👩‍👦</p>
       </div>
     </div>
+
+```
+<!-- Navigation -->
+<div class="nav-container">
+  <div class="nav">
+    <button class="nav-btn active" data-tab="overview">
+      <span class="icon">🏠</span>
+      <span class="label">Overview</span>
+    </button>
+    <button class="nav-btn" data-tab="planning">
+      <span class="icon">📅</span>
+      <span class="label">Planning</span>
+    </button>
+    <button class="nav-btn" data-tab="hotels">
+      <span class="icon">🏨</span>
+      <span class="label">Hotels</span>
+    </button>
+    <button class="nav-btn" data-tab="docs">
+      <span class="icon">📄</span>
+      <span class="label">Docs</span>
+    </button>
+    <button class="nav-btn" data-tab="todo">
+      <span class="icon">✅</span>
+      <span class="label">To Do</span>
+    </button>
+    <button class="nav-btn" data-tab="tools">
+      <span class="icon">🔧</span>
+      <span class="label">Tools</span>
+    </button>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+  
+  <!-- Overview Tab -->
+  <div class="tab-content active" id="overview">
     
-    <!-- Navigation -->
-    <div class="nav-container">
-      <div class="nav">
-        <button class="nav-btn active" data-tab="overview">
-          <span class="icon">🏠</span>
-          <span class="label">Overview</span>
-        </button>
-        <button class="nav-btn" data-tab="hotels">
-          <span class="icon">🏨</span>
-          <span class="label">Hotels</span>
-        </button>
-        <button class="nav-btn" data-tab="docs">
-          <span class="icon">📄</span>
-          <span class="label">Docs</span>
-        </button>
-        <button class="nav-btn" data-tab="todo">
-          <span class="icon">✅</span>
-          <span class="label">To Do</span>
-        </button>
-        <button class="nav-btn" data-tab="tools">
-          <span class="icon">🔧</span>
-          <span class="label">Tools</span>
-        </button>
+    <!-- Budget Summary -->
+    <div class="budget-card">
+      <h3>💰 Trip Budget</h3>
+      <div class="budget-total">€ 3,446.90</div>
+      <div class="budget-breakdown">
+        Flights €93.25 × 2 + Transfer €21.62 + Hotels €3,238.78
       </div>
     </div>
     
-    <!-- Content -->
-    <div class="content">
-      
-      <!-- Overview Tab -->
-      <div class="tab-content active" id="overview">
-        <!-- Outbound Flight -->
-        <div class="flight-card">
-          <div class="flight-header">
-            <span class="flight-badge outbound">✈️ Outbound</span>
-            <span class="flight-date">Sat, Jan 4</span>
-          </div>
-          <div class="flight-route">
-            <div class="flight-point">
-              <div class="flight-time">16:05</div>
-              <div class="flight-city">Paris CDG</div>
-              <div class="flight-terminal">Terminal 2E</div>
-            </div>
-            <div class="flight-line">
-              <span class="flight-number">AF0198</span>
-            </div>
-            <div class="flight-point">
-              <div class="flight-time">09:15</div>
-              <div class="flight-city">Bangkok BKK</div>
-              <div class="flight-terminal">Suvarnabhumi</div>
-            </div>
-          </div>
-          <div class="flight-info">
-            <div class="flight-info-item">
-              <span>⏰</span>
-              <span>Check-in by <strong>15:05</strong></span>
-            </div>
-            <div class="flight-info-item">
-              <span>🚪</span>
-              <span>Board by <strong>15:45</strong></span>
-            </div>
+    <!-- Outbound Flight -->
+    <div class="flight-card">
+      <div class="flight-header">
+        <span class="flight-badge outbound">✈️ Paris → Bangkok</span>
+        <span class="flight-date">Sat, Jan 4</span>
+      </div>
+      <div class="flight-route">
+        <div class="flight-point">
+          <div class="flight-time">16:05</div>
+          <div class="flight-city">Paris CDG</div>
+          <div class="flight-terminal">Terminal 2E</div>
+        </div>
+        <div class="flight-line">
+          <span class="flight-number">AF0198</span>
+        </div>
+        <div class="flight-point">
+          <div class="flight-time">09:15</div>
+          <div class="flight-city">Bangkok BKK</div>
+          <div class="flight-terminal">Suvarnabhumi</div>
+        </div>
+      </div>
+      <div class="flight-info">
+        <div class="flight-info-item">
+          <span>⏰</span>
+          <span>Check-in <strong>15:05</strong></span>
+        </div>
+        <div class="flight-info-item">
+          <span>🚪</span>
+          <span>Board <strong>15:45</strong></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Airport Transfer -->
+    <div class="flight-card">
+      <div class="flight-header">
+        <span class="flight-badge transfer">🚐 Airport Transfer</span>
+        <span class="flight-date">Sun, Jan 5</span>
+      </div>
+      <div class="flight-route">
+        <div class="flight-point">
+          <div class="flight-time small">09:15</div>
+          <div class="flight-city">BKK Airport</div>
+          <div class="flight-terminal">Suvarnabhumi</div>
+        </div>
+        <div class="flight-line">
+          <span class="flight-number">€21.62</span>
+        </div>
+        <div class="flight-point">
+          <div class="flight-time small">~10:30</div>
+          <div class="flight-city">Makkasan</div>
+          <div class="flight-terminal">Sathani Makkasan</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Timeline -->
+    <div class="card">
+      <h3 class="card-title"><span>🗓️</span> Trip Timeline</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Jan 5-7</div>
+            <div class="timeline-title">Ariyasom Villa</div>
+            <div class="timeline-sub">Bangkok • 2 nights • €511.82</div>
           </div>
         </div>
-        
-        <!-- Timeline -->
-        <div class="card">
-          <h3 class="card-title"><span>🗓️</span> Trip Timeline</h3>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <div class="timeline-date">Jan 5-7</div>
-                <div class="timeline-title">Ariyasom Villa</div>
-                <div class="timeline-sub">Bangkok • 2 nights</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <div class="timeline-date">Jan 7-11</div>
-                <div class="timeline-title">OUTRIGGER Khao Lak</div>
-                <div class="timeline-sub">Khao Lak • 4 nights</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <div class="timeline-date">Jan 12-15</div>
-                <div class="timeline-title">Aleenta Phuket</div>
-                <div class="timeline-sub">Phang Nga • 3 nights</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot blue"></div>
-              <div class="timeline-content blue">
-                <div class="timeline-date blue">Jan 16</div>
-                <div class="timeline-title">Return to Paris</div>
-                <div class="timeline-sub">AF0199 • Depart 12:30</div>
-              </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot purple"></div>
+          <div class="timeline-content purple">
+            <div class="timeline-date purple">Jan 7 • 4:30 PM</div>
+            <div class="timeline-title">✈️ Thai Lion Air</div>
+            <div class="timeline-sub">DMK → HKT • 1h20 • €93.25</div>
           </div>
         </div>
-        
-        <!-- Return Flight -->
-        <div class="flight-card">
-          <div class="flight-header">
-            <span class="flight-badge return">✈️ Return</span>
-            <span class="flight-date">Fri, Jan 16</span>
-          </div>
-          <div class="flight-route">
-            <div class="flight-point">
-              <div class="flight-time">12:30</div>
-              <div class="flight-city">Bangkok BKK</div>
-              <div class="flight-terminal">Suvarnabhumi</div>
-            </div>
-            <div class="flight-line">
-              <span class="flight-number">AF0199</span>
-            </div>
-            <div class="flight-point">
-              <div class="flight-time">19:25</div>
-              <div class="flight-city">Paris CDG</div>
-              <div class="flight-terminal">Terminal 2E</div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Jan 7-11</div>
+            <div class="timeline-title">OUTRIGGER Khao Lak</div>
+            <div class="timeline-sub">Khao Lak • 4 nights • €1,147.09</div>
           </div>
         </div>
-        
-        <!-- Emergency -->
-        <div class="emergency-card">
-          <h3>🆘 Emergency Numbers</h3>
-          <div class="emergency-grid">
-            <div class="emergency-item">
-              <label>Tourist Police</label>
-              <a href="tel:1155">1155</a>
-            </div>
-            <div class="emergency-item">
-              <label>Ambulance</label>
-              <a href="tel:1669">1669</a>
-            </div>
-            <div class="emergency-item">
-              <label>French Embassy BKK</label>
-              <a href="tel:+6626579100">+66 2 657 9100</a>
-            </div>
-            <div class="emergency-item">
-              <label>Romanian Embassy BKK</label>
-              <a href="tel:+6623066644">+66 2 306 6644</a>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Jan 12-15</div>
+            <div class="timeline-title">Aleenta Phuket</div>
+            <div class="timeline-sub">Phang Nga • 3 nights • €1,579.87</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot blue"></div>
+          <div class="timeline-content blue">
+            <div class="timeline-date blue">Jan 16</div>
+            <div class="timeline-title">Return to Paris</div>
+            <div class="timeline-sub">AF0199 • Depart 12:30</div>
           </div>
         </div>
       </div>
-      
-      <!-- Hotels Tab -->
-      <div class="tab-content" id="hotels">
-        <h2 class="section-title">Your Accommodations</h2>
-        
-        <!-- Ariyasom -->
-        <div class="hotel-card">
-          <div class="hotel-header" onclick="toggleHotel(this)">
-            <span class="hotel-icon">🏯</span>
-            <div class="hotel-info">
-              <div class="hotel-badges">
-                <span class="hotel-badge">Bangkok</span>
-                <span class="hotel-nights">2 nights</span>
-              </div>
-              <div class="hotel-name">Ariyasom Villa</div>
-              <div class="hotel-dates">Jan 5-7</div>
-            </div>
-            <span class="hotel-expand">▼</span>
-          </div>
-          <div class="hotel-details">
-            <div class="hotel-highlights">
-              <span class="highlight-tag">Boutique Thai heritage</span>
-              <span class="highlight-tag">Lush garden oasis</span>
-              <span class="highlight-tag">Central Sukhumvit</span>
-            </div>
-            <p class="hotel-address">📍 65 Sukhumvit 1, Sukhumvit Rd, Klongtoey Nua, Wattana, Bangkok 10110</p>
-            <div class="hotel-buttons">
-              <a href="https://maps.google.com/?q=Ariyasom+Villa+Bangkok" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
-              <a href="https://www.booking.com/hotel/th/ariyasom-villa.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
-            </div>
-            <div class="activities-box">
-              <div class="activities-title">📅 Suggested Activities</div>
-              <ul class="activities-list">
-                <li>Explore Sukhumvit area</li>
-                <li>Visit Lumphini Park with Luca</li>
-                <li>Thai massage at hotel spa</li>
-                <li>Street food tour on Sukhumvit Soi 38</li>
-                <li>Visit Jim Thompson House</li>
-                <li>Chatuchak Weekend Market (if Sunday)</li>
-              </ul>
-            </div>
-          </div>
+    </div>
+    
+    <!-- Internal Flight -->
+    <div class="flight-card">
+      <div class="flight-header">
+        <span class="flight-badge internal">🦁 Thai Lion Air</span>
+        <span class="flight-date">Tue, Jan 7</span>
+      </div>
+      <div class="flight-route">
+        <div class="flight-point">
+          <div class="flight-time small">16:30</div>
+          <div class="flight-city">Bangkok DMK</div>
+          <div class="flight-terminal">Don Mueang</div>
         </div>
-        
-        <!-- Outrigger -->
-        <div class="hotel-card">
-          <div class="hotel-header" onclick="toggleHotel(this)">
-            <span class="hotel-icon">🏖️</span>
-            <div class="hotel-info">
-              <div class="hotel-badges">
-                <span class="hotel-badge">Khao Lak</span>
-                <span class="hotel-nights">4 nights</span>
-              </div>
-              <div class="hotel-name">OUTRIGGER Khao Lak</div>
-              <div class="hotel-dates">Jan 7-11</div>
-            </div>
-            <span class="hotel-expand">▼</span>
-          </div>
-          <div class="hotel-details">
-            <div class="hotel-highlights">
-              <span class="highlight-tag">Beachfront resort</span>
-              <span class="highlight-tag">Kids club</span>
-              <span class="highlight-tag">Multiple pools</span>
-            </div>
-            <p class="hotel-address">📍 41/12 Moo 2, Khuk Khak, Takuapa, Phang Nga 82190</p>
-            <div class="hotel-buttons">
-              <a href="https://maps.google.com/?q=OUTRIGGER+Khao+Lak+Beach+Resort" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
-              <a href="https://www.booking.com/hotel/th/outrigger-khao-lak-beach-resort.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
-            </div>
-            <div class="activities-box">
-              <div class="activities-title">📅 Suggested Activities</div>
-              <ul class="activities-list">
-                <li>Beach days with Luca</li>
-                <li>Similan Islands day trip</li>
-                <li>Khao Sok National Park excursion</li>
-                <li>Thai cooking class</li>
-                <li>Visit Khao Lak town & local markets</li>
-                <li>Sunset cocktails at beach bar</li>
-                <li>Snorkeling trip</li>
-              </ul>
-            </div>
-          </div>
+        <div class="flight-line">
+          <span class="flight-number">1h20</span>
         </div>
-        
-        <!-- Aleenta -->
-        <div class="hotel-card">
-          <div class="hotel-header" onclick="toggleHotel(this)">
-            <span class="hotel-icon">🌴</span>
-            <div class="hotel-info">
-              <div class="hotel-badges">
-                <span class="hotel-badge">Phang Nga</span>
-                <span class="hotel-nights">3 nights</span>
-              </div>
-              <div class="hotel-name">Aleenta Phuket</div>
-              <div class="hotel-dates">Jan 12-15</div>
-            </div>
-            <span class="hotel-expand">▼</span>
-          </div>
-          <div class="hotel-details">
-            <div class="hotel-highlights">
-              <span class="highlight-tag">Luxury beachfront</span>
-              <span class="highlight-tag">Award-winning spa</span>
-              <span class="highlight-tag">Leading Hotels of the World</span>
-            </div>
-            <p class="hotel-address">📍 33 Moo 5, Khok Kloi, Takuapa, Phang Nga 82140</p>
-            <div class="hotel-buttons">
-              <a href="https://maps.google.com/?q=Aleenta+Phuket+Resort+Spa" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
-              <a href="https://www.booking.com/hotel/th/aleenta-resort-amp-spa-phuket-phang-nga.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
-            </div>
-            <div class="activities-box">
-              <div class="activities-title">📅 Suggested Activities</div>
-              <ul class="activities-list">
-                <li>Spa day for Ana</li>
-                <li>Private beach time</li>
-                <li>Phang Nga Bay tour (James Bond Island)</li>
-                <li>Visit Sarasin Bridge viewpoint</li>
-                <li>Local seafood dinner</li>
-                <li>Final shopping for souvenirs</li>
-              </ul>
-            </div>
-          </div>
+        <div class="flight-point">
+          <div class="flight-time small">17:50</div>
+          <div class="flight-city">Phuket HKT</div>
+          <div class="flight-terminal">International</div>
         </div>
       </div>
-      
-      <!-- Docs Tab -->
-      <div class="tab-content" id="docs">
-        <h2 class="section-title">Travel Documents</h2>
-        
-        <div class="visa-card">
-          <div class="visa-header">
-            <span class="visa-icon">✅</span>
-            <div>
-              <div class="visa-title">Visa-Free Entry</div>
-              <div class="visa-sub">France & Romania citizens</div>
-            </div>
-          </div>
-          <p class="visa-text">Both France and Romania citizens can enter Thailand visa-free for up to 60 days for tourism.</p>
+      <div class="flight-info">
+        <div class="flight-info-item">
+          <span>👨‍👩‍👦</span>
+          <span>3 passengers</span>
         </div>
-        
-        <div class="card">
-          <h3 class="card-title"><span>🎫</span> Thailand Digital Arrival Cards</h3>
-          
-          <div class="doc-card" onclick="showModal('fabio')">
-            <div class="doc-avatar">F</div>
-            <div class="doc-info">
-              <div class="doc-name">Fabio PIAZZA</div>
-              <div class="doc-number">Card: E6B46E0</div>
-            </div>
-            <span class="doc-arrow">→</span>
-          </div>
-          
-          <div class="doc-card" onclick="showModal('ana')">
-            <div class="doc-avatar">A</div>
-            <div class="doc-info">
-              <div class="doc-name">Anamaria RACHERU</div>
-              <div class="doc-number">Card: 07122BE</div>
-            </div>
-            <span class="doc-arrow">→</span>
-          </div>
-          
-          <a href="https://tdac.immigration.go.th/arrival-card" target="_blank" style="display: block; text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #d97706; text-decoration: none;">
-            Update cards on official TDAC website →
-          </a>
+        <span class="price-tag">€93.25</span>
+      </div>
+    </div>
+    
+    <!-- Return Flight -->
+    <div class="flight-card">
+      <div class="flight-header">
+        <span class="flight-badge return">✈️ Bangkok → Paris</span>
+        <span class="flight-date">Fri, Jan 16</span>
+      </div>
+      <div class="flight-route">
+        <div class="flight-point">
+          <div class="flight-time">12:30</div>
+          <div class="flight-city">Bangkok BKK</div>
+          <div class="flight-terminal">Suvarnabhumi</div>
         </div>
-        
-        <div class="card">
-          <h3 class="card-title"><span>🎒</span> Don't Forget</h3>
-          <div class="checklist-grid">
-            <div class="checklist-item">🛂 Passports</div>
-            <div class="checklist-item">📱 TDAC QR codes</div>
-            <div class="checklist-item">✈️ Flight tickets</div>
-            <div class="checklist-item">🏨 Hotel vouchers</div>
-            <div class="checklist-item">💳 Credit cards</div>
-            <div class="checklist-item">💵 Some THB cash</div>
-            <div class="checklist-item">📋 Travel insurance</div>
-            <div class="checklist-item">👶 Luca's essentials</div>
-            <div class="checklist-item">🔌 Power adapters</div>
-            <div class="checklist-item">☀️ Sunscreen</div>
-          </div>
+        <div class="flight-line">
+          <span class="flight-number">AF0199</span>
+        </div>
+        <div class="flight-point">
+          <div class="flight-time">19:25</div>
+          <div class="flight-city">Paris CDG</div>
+          <div class="flight-terminal">Terminal 2E</div>
         </div>
       </div>
-      
-      <!-- Todo Tab -->
-      <div class="tab-content" id="todo">
-        <h2 class="section-title">Trip To-Do List</h2>
-        
-        <div class="todo-input-container">
-          <input type="text" class="todo-input" id="todoInput" placeholder="Add a task...">
-          <button class="todo-add-btn" onclick="addTodo()">+</button>
+    </div>
+    
+    <!-- Emergency -->
+    <div class="emergency-card">
+      <h3>🆘 Emergency Numbers</h3>
+      <div class="emergency-grid">
+        <div class="emergency-item">
+          <label>Tourist Police</label>
+          <a href="tel:1155">1155</a>
         </div>
-        
-        <div id="todoList"></div>
-        <div id="todoProgress"></div>
-      </div>
-      
-      <!-- Tools Tab -->
-      <div class="tab-content" id="tools">
-        <h2 class="section-title">Travel Tools</h2>
-        
-        <div class="card">
-          <h3 class="card-title"><span>💱</span> Currency Converter</h3>
-          
-          <div class="currency-input-group">
-            <label class="currency-label">Euro (EUR)</label>
-            <input type="number" class="currency-input" id="eurInput" value="100" oninput="convertCurrency()">
-          </div>
-          
-          <div class="currency-arrow"><span>↓</span></div>
-          
-          <div class="currency-input-group">
-            <label class="currency-label">Thai Baht (THB)</label>
-            <div class="currency-result">
-              <div class="currency-result-value" id="thbResult">฿ 3,750</div>
-            </div>
-          </div>
-          
-          <p class="currency-rate">Rate: 1 EUR ≈ 37.5 THB (approx.)</p>
-          
-          <div class="quick-amounts">
-            <p class="quick-amounts-label">Quick reference:</p>
-            <div class="quick-amounts-grid">
-              <button class="quick-btn" onclick="setAmount(20)">
-                <div class="quick-btn-eur">€20</div>
-                <div class="quick-btn-thb">฿750</div>
-              </button>
-              <button class="quick-btn" onclick="setAmount(50)">
-                <div class="quick-btn-eur">€50</div>
-                <div class="quick-btn-thb">฿1,875</div>
-              </button>
-              <button class="quick-btn" onclick="setAmount(100)">
-                <div class="quick-btn-eur">€100</div>
-                <div class="quick-btn-thb">฿3,750</div>
-              </button>
-              <button class="quick-btn" onclick="setAmount(200)">
-                <div class="quick-btn-eur">€200</div>
-                <div class="quick-btn-thb">฿7,500</div>
-              </button>
-              <button class="quick-btn" onclick="setAmount(500)">
-                <div class="quick-btn-eur">€500</div>
-                <div class="quick-btn-thb">฿18,750</div>
-              </button>
-              <button class="quick-btn" onclick="setAmount(1000)">
-                <div class="quick-btn-eur">€1000</div>
-                <div class="quick-btn-thb">฿37,500</div>
-              </button>
-            </div>
-          </div>
+        <div class="emergency-item">
+          <label>Ambulance</label>
+          <a href="tel:1669">1669</a>
         </div>
-        
-        <div class="card">
-          <h3 class="card-title"><span>🗣️</span> Thai Phrases</h3>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">Hello</div>
-              <div class="phrase-romanized">Sawadee</div>
-            </div>
-            <div class="phrase-thai">สวัสดี</div>
-          </div>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">Thank you</div>
-              <div class="phrase-romanized">Khob khun</div>
-            </div>
-            <div class="phrase-thai">ขอบคุณ</div>
-          </div>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">How much?</div>
-              <div class="phrase-romanized">Tao rai</div>
-            </div>
-            <div class="phrase-thai">เท่าไหร่</div>
-          </div>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">Delicious!</div>
-              <div class="phrase-romanized">Aroi</div>
-            </div>
-            <div class="phrase-thai">อร่อย</div>
-          </div>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">No thanks</div>
-              <div class="phrase-romanized">Mai ao</div>
-            </div>
-            <div class="phrase-thai">ไม่เอา</div>
-          </div>
-          <div class="phrase-item">
-            <div>
-              <div class="phrase-english">Help!</div>
-              <div class="phrase-romanized">Chuay duay</div>
-            </div>
-            <div class="phrase-thai">ช่วยด้วย</div>
-          </div>
+        <div class="emergency-item">
+          <label>French Embassy BKK</label>
+          <a href="tel:+6626579100">+66 2 657 9100</a>
         </div>
-        
-        <div class="card">
-          <h3 class="card-title"><span>🔗</span> Quick Links</h3>
-          <div class="links-grid">
-            <a href="https://grab.com" target="_blank" class="link-btn">
-              <span class="link-icon">🚕</span>
-              <span class="link-label">Grab App</span>
-            </a>
-            <a href="https://maps.google.com" target="_blank" class="link-btn">
-              <span class="link-icon">🗺️</span>
-              <span class="link-label">Google Maps</span>
-            </a>
-            <a href="https://weather.com/weather/today/l/13.75,100.49" target="_blank" class="link-btn">
-              <span class="link-icon">🌤️</span>
-              <span class="link-label">Weather</span>
-            </a>
-            <a href="https://www.bumrungrad.com" target="_blank" class="link-btn">
-              <span class="link-icon">🏥</span>
-              <span class="link-label">Bumrungrad Hospital</span>
-            </a>
-          </div>
-        </div>
-        
-        <div class="timezone-card">
-          <h3>🕐 Time Zone</h3>
-          <p class="sub">Thailand is GMT+7</p>
-          <p class="big">+6 hours from Paris</p>
-          <p class="note">When it's noon in Paris, it's 6 PM in Thailand</p>
+        <div class="emergency-item">
+          <label>Romanian Embassy BKK</label>
+          <a href="tel:+6623066644">+66 2 306 6644</a>
         </div>
       </div>
     </div>
   </div>
   
+  <!-- Planning Tab -->
+  <div class="tab-content" id="planning">
+    <h2 class="section-title">📅 Day by Day</h2>
+    
+    <!-- Day 1 - Jan 5 -->
+    <div class="day-card">
+      <div class="day-header travel" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number travel">5</div>
+          <div>
+            <div class="day-title">Arrival Bangkok</div>
+            <div class="day-location">✈️ Travel Day → Ariyasom Villa</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌅 Morning</div>
+          <div class="activity-item highlight">
+            <div class="activity-time">09:15</div>
+            <div class="activity-content">
+              <div class="activity-name">Land at BKK Suvarnabhumi</div>
+              <div class="activity-desc">Immigration, baggage, meet transfer</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">~10:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Transfer to Makkasan</div>
+              <div class="activity-desc">Pre-booked shuttle (€21.62)</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌞 Afternoon</div>
+          <div class="activity-item highlight">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-in Ariyasom Villa</div>
+              <div class="activity-desc">Boutique hotel, Sukhumvit area</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">15:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Rest & refresh</div>
+              <div class="activity-desc">Pool time, let Luca nap</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item">
+            <div class="activity-time">18:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Explore Sukhumvit Soi 1</div>
+              <div class="activity-desc">Easy walk around hotel area</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">19:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Dinner at hotel restaurant</div>
+              <div class="activity-desc">Na Aroon - organic Thai cuisine</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 2 - Jan 6 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">6</div>
+          <div>
+            <div class="day-title">Bangkok Exploration</div>
+            <div class="day-location">🏯 Temples & Culture</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌅 Morning</div>
+          <div class="activity-item">
+            <div class="activity-time">07:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Breakfast at hotel</div>
+              <div class="activity-desc">Organic buffet at Na Aroon</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">09:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Lumphini Park</div>
+              <div class="activity-desc">Morning walk, see monitor lizards! Perfect for Luca</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🦎</span><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌞 Afternoon</div>
+          <div class="activity-item">
+            <div class="activity-time">12:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Lunch at hotel + Luca nap</div>
+              <div class="activity-desc">Rest during hottest hours</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">15:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Jim Thompson House</div>
+              <div class="activity-desc">Beautiful Thai architecture & silk museum</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🎨</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">16:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Thai massage for Ana</div>
+              <div class="activity-desc">At hotel spa - Fabio plays with Luca</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 💆‍♀️</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item">
+            <div class="activity-time">18:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Sukhumvit Soi 38 Street Food</div>
+              <div class="activity-desc">Famous night market - pad thai, mango sticky rice</div>
+              <div class="activity-tags"><span class="activity-tag fabio">Fabio 🍜</span><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">20:00</div>
+            <div class="activity-content">
+              <div class="activity-name">EmQuartier Mall</div>
+              <div class="activity-desc">AC, nice shops, baby-friendly</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🛍️</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 3 - Jan 7 -->
+    <div class="day-card">
+      <div class="day-header travel" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number travel">7</div>
+          <div>
+            <div class="day-title">Bangkok → Khao Lak</div>
+            <div class="day-location">✈️ Thai Lion Air DMK→HKT</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌅 Morning</div>
+          <div class="activity-item">
+            <div class="activity-time">07:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Last breakfast at Ariyasom</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">09:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Pack & explore local area</div>
+              <div class="activity-desc">Last Bangkok shopping</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana</span></div>
+            </div>
+          </div>
+          <div class="activity-item highlight">
+            <div class="activity-time">12:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-out Ariyasom Villa</div>
+              <div class="activity-desc">Store luggage if needed</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌞 Afternoon</div>
+          <div class="activity-item">
+            <div class="activity-time">13:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Taxi to Don Mueang (DMK)</div>
+              <div class="activity-desc">~45 min from Sukhumvit, allow extra time</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item highlight">
+            <div class="activity-time">16:30</div>
+            <div class="activity-content">
+              <div class="activity-name">✈️ Flight DMK → HKT</div>
+              <div class="activity-desc">Thai Lion Air • 1h20 • 3 passengers</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">17:50</div>
+            <div class="activity-content">
+              <div class="activity-name">Arrive Phuket HKT</div>
+              <div class="activity-desc">Transfer to Khao Lak (~1h30 drive)</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item highlight">
+            <div class="activity-time">~20:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-in OUTRIGGER Khao Lak</div>
+              <div class="activity-desc">Beach resort - late check-in ok</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">21:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Light dinner at resort</div>
+              <div class="activity-desc">Room service or restaurant</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 4 - Jan 8 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">8</div>
+          <div>
+            <div class="day-title">Beach Day</div>
+            <div class="day-location">🏖️ OUTRIGGER Khao Lak</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌅 Morning</div>
+          <div class="activity-item">
+            <div class="activity-time">08:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Buffet breakfast</div>
+              <div class="activity-desc">International & Thai options</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">09:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Beach time!</div>
+              <div class="activity-desc">Build sandcastles with Luca 🏰</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🏖️</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">10:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Pool time</div>
+              <div class="activity-desc">Kids pool for Luca, main pool for adults</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌞 Afternoon</div>
+          <div class="activity-item">
+            <div class="activity-time">12:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Lunch at beach bar</div>
+              <div class="activity-desc">Fresh seafood, tropical cocktails</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Luca nap + relaxation</div>
+              <div class="activity-desc">Ana: spa booking? Fabio: read by pool</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca</span><span class="activity-tag ana">Ana 💆‍♀️</span><span class="activity-tag fabio">Fabio 📖</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">16:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Kids Club</div>
+              <div class="activity-desc">Activities for Luca while parents relax</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🎨</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item">
+            <div class="activity-time">18:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Sunset at beach bar</div>
+              <div class="activity-desc">Cocktails & amazing views 🌅</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🍹</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">19:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Dinner at resort restaurant</div>
+              <div class="activity-desc">Thai specialties</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 5 - Jan 9 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">9</div>
+          <div>
+            <div class="day-title">Similan Islands</div>
+            <div class="day-location">🏝️ Day Trip Option</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🏝️ Option A: Similan Day Trip</div>
+          <div class="activity-item">
+            <div class="activity-time">06:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Early departure for Similan</div>
+              <div class="activity-desc">World-class snorkeling - book at hotel</div>
+              <div class="activity-tags"><span class="activity-tag fabio">Fabio 🤿</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">All day</div>
+            <div class="activity-content">
+              <div class="activity-name">Ana & Luca at resort</div>
+              <div class="activity-desc">Spa, pool, kids club - relaxing day</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana</span><span class="activity-tag luca">Luca</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🏖️ Option B: Family Beach Day</div>
+          <div class="activity-item">
+            <div class="activity-time">09:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Thai Cooking Class</div>
+              <div class="activity-desc">Learn pad thai & green curry together</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 👩‍🍳</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Visit Khao Lak town</div>
+              <div class="activity-desc">Local market, shops, cafes</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 6 - Jan 10 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">10</div>
+          <div>
+            <div class="day-title">Khao Sok Adventure</div>
+            <div class="day-location">🌴 National Park Option</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌴 Khao Sok Day Trip</div>
+          <div class="activity-item">
+            <div class="activity-time">07:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Depart for Khao Sok</div>
+              <div class="activity-desc">~1h30 drive, amazing scenery</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">09:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Bamboo rafting</div>
+              <div class="activity-desc">Gentle river - perfect for Luca!</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🎋</span><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">12:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Lunch in the jungle</div>
+              <div class="activity-desc">Local Thai food</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Elephant sanctuary (ethical)</div>
+              <div class="activity-desc">Observe elephants - no riding!</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🐘</span><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item">
+            <div class="activity-time">17:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Return to resort</div>
+              <div class="activity-desc">Luca will sleep in car 😴</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">19:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Relaxed dinner</div>
+              <div class="activity-desc">Room service or beachside</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 7 - Jan 11 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">11</div>
+          <div>
+            <div class="day-title">Last Day Khao Lak</div>
+            <div class="day-location">🏖️ → Aleenta Phuket</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">🌅 Morning</div>
+          <div class="activity-item">
+            <div class="activity-time">07:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Sunrise beach walk</div>
+              <div class="activity-desc">Last morning at OUTRIGGER</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🌅</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">08:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Breakfast & pack</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item highlight">
+            <div class="activity-time">12:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-out OUTRIGGER</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌞 Afternoon</div>
+          <div class="activity-item">
+            <div class="activity-time">12:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Drive to Aleenta</div>
+              <div class="activity-desc">~1h scenic coastal drive</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item highlight">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-in Aleenta Phuket</div>
+              <div class="activity-desc">Luxury beachfront resort 🌴</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">15:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Explore the resort</div>
+              <div class="activity-desc">Pool, beach, spa facilities</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🌙 Evening</div>
+          <div class="activity-item">
+            <div class="activity-time">18:30</div>
+            <div class="activity-content">
+              <div class="activity-name">Sunset at private beach</div>
+              <div class="activity-desc">Champagne moment! 🥂</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">20:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Fine dining at resort</div>
+              <div class="activity-desc">Romantic dinner - ask for babysitting?</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🍷</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 8-10 at Aleenta -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number">12-14</div>
+          <div>
+            <div class="day-title">Aleenta Luxury Days</div>
+            <div class="day-location">🌴 Phang Nga Paradise</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">💆‍♀️ Spa & Wellness</div>
+          <div class="activity-item">
+            <div class="activity-time">Day 12</div>
+            <div class="activity-content">
+              <div class="activity-name">Couples spa morning</div>
+              <div class="activity-desc">Thai massage, body scrub - Luca at kids activities</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 💆‍♀️</span><span class="activity-tag fabio">Fabio</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🏝️ Phang Nga Bay</div>
+          <div class="activity-item">
+            <div class="activity-time">Day 13</div>
+            <div class="activity-content">
+              <div class="activity-name">James Bond Island tour</div>
+              <div class="activity-desc">Iconic limestone cliffs, kayaking through caves</div>
+              <div class="activity-tags"><span class="activity-tag fabio">Fabio 🚣</span><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">Day 13</div>
+            <div class="activity-content">
+              <div class="activity-name">Floating village visit</div>
+              <div class="activity-desc">See local fishing community</div>
+              <div class="activity-tags"><span class="activity-tag luca">Luca 🎣</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">🛍️ Shopping & Relaxation</div>
+          <div class="activity-item">
+            <div class="activity-time">Day 14</div>
+            <div class="activity-content">
+              <div class="activity-name">Last day relaxation</div>
+              <div class="activity-desc">Beach, pool, final spa treatment</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">Day 14</div>
+            <div class="activity-content">
+              <div class="activity-name">Souvenir shopping</div>
+              <div class="activity-desc">Local markets for gifts</div>
+              <div class="activity-tags"><span class="activity-tag ana">Ana 🛍️</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">Day 14</div>
+            <div class="activity-content">
+              <div class="activity-name">Farewell seafood dinner</div>
+              <div class="activity-desc">Fresh catch on the beach</div>
+              <div class="activity-tags"><span class="activity-tag family">Family 🦐</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Day 11 - Jan 15-16 -->
+    <div class="day-card">
+      <div class="day-header travel" onclick="toggleDay(this)">
+        <div class="day-info">
+          <div class="day-number travel">15-16</div>
+          <div>
+            <div class="day-title">Return Home</div>
+            <div class="day-location">✈️ Phuket → Paris</div>
+          </div>
+        </div>
+        <span class="day-expand">▼</span>
+      </div>
+      <div class="day-details">
+        <div class="activity-section">
+          <div class="activity-section-title">Jan 15 - Last Day</div>
+          <div class="activity-item">
+            <div class="activity-time">Morning</div>
+            <div class="activity-content">
+              <div class="activity-name">Final beach time</div>
+              <div class="activity-desc">Enjoy last moments at Aleenta</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item highlight">
+            <div class="activity-time">12:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Check-out Aleenta</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">14:00</div>
+            <div class="activity-content">
+              <div class="activity-name">Transfer to Phuket area</div>
+              <div class="activity-desc">Last minute shopping or beach time</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-time">Evening</div>
+            <div class="activity-content">
+              <div class="activity-name">Night in Phuket/Bangkok area</div>
+              <div class="activity-desc">Before early flight? Check booking</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-section">
+          <div class="activity-section-title">Jan 16 - Travel Day</div>
+          <div class="activity-item highlight">
+            <div class="activity-time">12:30</div>
+            <div class="activity-content">
+              <div class="activity-name">✈️ AF0199 BKK → CDG</div>
+              <div class="activity-desc">Arrive Paris 19:25 same day</div>
+              <div class="activity-tags"><span class="activity-tag family">Family</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hotels Tab -->
+  <div class="tab-content" id="hotels">
+    <h2 class="section-title">Your Accommodations</h2>
+    
+    <!-- Ariyasom -->
+    <div class="hotel-card">
+      <div class="hotel-header" onclick="toggleHotel(this)">
+        <span class="hotel-icon">🏯</span>
+        <div class="hotel-info">
+          <div class="hotel-badges">
+            <span class="hotel-badge">Bangkok</span>
+            <span class="hotel-badge price">€511.82</span>
+          </div>
+          <div class="hotel-name">Ariyasom Villa</div>
+          <div class="hotel-dates">Jan 5-7 • 2 nights</div>
+          <div class="hotel-checkin">Check-in 14:00 • Check-out 12:00</div>
+        </div>
+        <span class="hotel-expand">▼</span>
+      </div>
+      <div class="hotel-details">
+        <div class="hotel-highlights">
+          <span class="highlight-tag">Boutique Thai heritage</span>
+          <span class="highlight-tag">Lush garden oasis</span>
+          <span class="highlight-tag">Central Sukhumvit</span>
+        </div>
+        <p class="hotel-address">📍 65 Sukhumvit 1, Sukhumvit Rd, Klongtoey Nua, Wattana, Bangkok 10110</p>
+        <div class="hotel-buttons">
+          <a href="https://maps.google.com/?q=Ariyasom+Villa+Bangkok" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
+          <a href="https://www.booking.com/hotel/th/ariyasom-villa.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Outrigger -->
+    <div class="hotel-card">
+      <div class="hotel-header" onclick="toggleHotel(this)">
+        <span class="hotel-icon">🏖️</span>
+        <div class="hotel-info">
+          <div class="hotel-badges">
+            <span class="hotel-badge">Khao Lak</span>
+            <span class="hotel-badge price">€1,147.09</span>
+          </div>
+          <div class="hotel-name">OUTRIGGER Khao Lak</div>
+          <div class="hotel-dates">Jan 7-11 • 4 nights</div>
+          <div class="hotel-checkin">Check-in 14:00 • Check-out 12:00</div>
+        </div>
+        <span class="hotel-expand">▼</span>
+      </div>
+      <div class="hotel-details">
+        <div class="hotel-highlights">
+          <span class="highlight-tag">Beachfront resort</span>
+          <span class="highlight-tag">Kids club</span>
+          <span class="highlight-tag">Multiple pools</span>
+        </div>
+        <p class="hotel-address">📍 41/12 Moo 2, Khuk Khak, Takuapa, Phang Nga 82190</p>
+        <div class="hotel-buttons">
+          <a href="https://maps.google.com/?q=OUTRIGGER+Khao+Lak+Beach+Resort" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
+          <a href="https://www.booking.com/hotel/th/outrigger-khao-lak-beach-resort.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Aleenta -->
+    <div class="hotel-card">
+      <div class="hotel-header" onclick="toggleHotel(this)">
+        <span class="hotel-icon">🌴</span>
+        <div class="hotel-info">
+          <div class="hotel-badges">
+            <span class="hotel-badge">Phang Nga</span>
+            <span class="hotel-badge price">€1,579.87</span>
+          </div>
+          <div class="hotel-name">Aleenta Phuket</div>
+          <div class="hotel-dates">Jan 12-15 • 3 nights</div>
+          <div class="hotel-checkin">Check-in 14:00 • Check-out 12:00</div>
+        </div>
+        <span class="hotel-expand">▼</span>
+      </div>
+      <div class="hotel-details">
+        <div class="hotel-highlights">
+          <span class="highlight-tag">Luxury beachfront</span>
+          <span class="highlight-tag">Award-winning spa</span>
+          <span class="highlight-tag">Leading Hotels of the World</span>
+        </div>
+        <p class="hotel-address">📍 33 Moo 5, Khok Kloi, Takuapa, Phang Nga 82140</p>
+        <p style="font-size: 0.75rem; color: #047857; margin-bottom: 1rem;">💰 Paid: THB 58,343.13</p>
+        <div class="hotel-buttons">
+          <a href="https://maps.google.com/?q=Aleenta+Phuket+Resort+Spa" target="_blank" class="hotel-btn navigate">🗺️ Navigate</a>
+          <a href="https://www.booking.com/hotel/th/aleenta-resort-amp-spa-phuket-phang-nga.html" target="_blank" class="hotel-btn booking">📋 Booking</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Docs Tab -->
+  <div class="tab-content" id="docs">
+    <h2 class="section-title">Travel Documents</h2>
+    
+    <div class="visa-card">
+      <div class="visa-header">
+        <span class="visa-icon">✅</span>
+        <div>
+          <div class="visa-title">Visa-Free Entry</div>
+          <div class="visa-sub">France & Romania citizens</div>
+        </div>
+      </div>
+      <p class="visa-text">Both France and Romania citizens can enter Thailand visa-free for up to 60 days for tourism.</p>
+    </div>
+    
+    <div class="card">
+      <h3 class="card-title"><span>🎫</span> Thailand Digital Arrival Cards</h3>
+      
+      <div class="doc-card" onclick="showModal('fabio')">
+        <div class="doc-avatar">F</div>
+        <div class="doc-info">
+          <div class="doc-name">Fabio PIAZZA</div>
+          <div class="doc-number">Card: E6B46E0</div>
+        </div>
+        <span class="doc-arrow">→</span>
+      </div>
+      
+      <div class="doc-card" onclick="showModal('ana')">
+        <div class="doc-avatar">A</div>
+        <div class="doc-info">
+          <div class="doc-name">Anamaria RACHERU</div>
+          <div class="doc-number">Card: 07122BE</div>
+        </div>
+        <span class="doc-arrow">→</span>
+      </div>
+      
+      <a href="https://tdac.immigration.go.th/arrival-card" target="_blank" style="display: block; text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #d97706; text-decoration: none;">
+        Update cards on official TDAC website →
+      </a>
+    </div>
+    
+    <div class="card">
+      <h3 class="card-title"><span>🎒</span> Don't Forget</h3>
+      <div class="checklist-grid">
+        <div class="checklist-item">🛂 Passports</div>
+        <div class="checklist-item">📱 TDAC QR codes</div>
+        <div class="checklist-item">✈️ Flight tickets</div>
+        <div class="checklist-item">🏨 Hotel vouchers</div>
+        <div class="checklist-item">💳 Credit cards</div>
+        <div class="checklist-item">💵 Some THB cash</div>
+        <div class="checklist-item">📋 Travel insurance</div>
+        <div class="checklist-item">👶 Luca's essentials</div>
+        <div class="checklist-item">🔌 Power adapters</div>
+        <div class="checklist-item">☀️ Sunscreen</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Todo Tab -->
+  <div class="tab-content" id="todo">
+    <h2 class="section-title">Trip To-Do List</h2>
+    
+    <div class="todo-input-container">
+      <input type="text" class="todo-input" id="todoInput" placeholder="Add a task...">
+      <button class="todo-add-btn" onclick="addTodo()">+</button>
+    </div>
+    
+    <div id="todoList"></div>
+    <div id="todoProgress"></div>
+  </div>
+  
+  <!-- Tools Tab -->
+  <div class="tab-content" id="tools">
+    <h2 class="section-title">Travel Tools</h2>
+    
+    <div class="card">
+      <h3 class="card-title"><span>💱</span> Currency Converter</h3>
+      
+      <div class="currency-input-group">
+        <label class="currency-label">Euro (EUR)</label>
+        <input type="number" class="currency-input" id="eurInput" value="100" oninput="convertCurrency()">
+      </div>
+      
+      <div class="currency-arrow"><span>↓</span></div>
+      
+      <div class="currency-input-group">
+        <label class="currency-label">Thai Baht (THB)</label>
+        <div class="currency-result">
+          <div class="currency-result-value" id="thbResult">฿ 3,750</div>
+        </div>
+      </div>
+      
+      <p class="currency-rate">Rate: 1 EUR ≈ 37.5 THB (approx.)</p>
+      
+      <div class="quick-amounts">
+        <p class="quick-amounts-label">Quick reference:</p>
+        <div class="quick-amounts-grid">
+          <button class="quick-btn" onclick="setAmount(20)">
+            <div class="quick-btn-eur">€20</div>
+            <div class="quick-btn-thb">฿750</div>
+          </button>
+          <button class="quick-btn" onclick="setAmount(50)">
+            <div class="quick-btn-eur">€50</div>
+            <div class="quick-btn-thb">฿1,875</div>
+          </button>
+          <button class="quick-btn" onclick="setAmount(100)">
+            <div class="quick-btn-eur">€100</div>
+            <div class="quick-btn-thb">฿3,750</div>
+          </button>
+          <button class="quick-btn" onclick="setAmount(200)">
+            <div class="quick-btn-eur">€200</div>
+            <div class="quick-btn-thb">฿7,500</div>
+          </button>
+          <button class="quick-btn" onclick="setAmount(500)">
+            <div class="quick-btn-eur">€500</div>
+            <div class="quick-btn-thb">฿18,750</div>
+          </button>
+          <button class="quick-btn" onclick="setAmount(1000)">
+            <div class="quick-btn-eur">€1000</div>
+            <div class="quick-btn-thb">฿37,500</div>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 class="card-title"><span>🗣️</span> Thai Phrases</h3>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">Hello</div>
+          <div class="phrase-romanized">Sawadee khrap/kha</div>
+        </div>
+        <div class="phrase-thai">สวัสดี</div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">Thank you</div>
+          <div class="phrase-romanized">Khob khun khrap/kha</div>
+        </div>
+        <div class="phrase-thai">ขอบคุณ</div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">How much?</div>
+          <div class="phrase-romanized">Tao rai?</div>
+        </div>
+        <div class="phrase-thai">เท่าไหร่</div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">Delicious!</div>
+          <div class="phrase-romanized">Aroi mak!</div>
+        </div>
+        <div class="phrase-thai">อร่อยมาก</div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">No thanks</div>
+          <div class="phrase-romanized">Mai ao khrap/kha</div>
+        </div>
+        <div class="phrase-thai">ไม่เอา</div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-english">Too expensive</div>
+          <div class="phrase-romanized">Paeng pai</div>
+        </div>
+        <div class="phrase-thai">แพงไป</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 class="card-title"><span>🔗</span> Quick Links</h3>
+      <div class="links-grid">
+        <a href="https://grab.com" target="_blank" class="link-btn">
+          <span class="link-icon">🚕</span>
+          <span class="link-label">Grab App</span>
+        </a>
+        <a href="https://maps.google.com" target="_blank" class="link-btn">
+          <span class="link-icon">🗺️</span>
+          <span class="link-label">Google Maps</span>
+        </a>
+        <a href="https://weather.com/weather/today/l/13.75,100.49" target="_blank" class="link-btn">
+          <span class="link-icon">🌤️</span>
+          <span class="link-label">Weather</span>
+        </a>
+        <a href="https://www.bumrungrad.com" target="_blank" class="link-btn">
+          <span class="link-icon">🏥</span>
+          <span class="link-label">Hospital</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="timezone-card">
+      <h3>🕐 Time Zone</h3>
+      <p class="sub">Thailand is GMT+7</p>
+      <p class="big">+6 hours from Paris</p>
+      <p class="note">When it's noon in Paris, it's 6 PM in Thailand</p>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
   <!-- Modal -->
+
   <div class="modal-overlay" id="modal" onclick="closeModal()">
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
@@ -1713,12 +2689,11 @@
       <p class="modal-footer">Present QR code from official TDAC app at immigration</p>
     </div>
   </div>
-  
+
   <script>
     // Password protection
     const CORRECT_PASSWORD = 'luca2026';
     
-    // Check if already unlocked this session
     if (sessionStorage.getItem('thailand-unlocked') === 'true') {
       document.getElementById('lockScreen').classList.add('hidden');
       document.getElementById('app').classList.add('unlocked');
@@ -1739,7 +2714,6 @@
       }
     }
     
-    // Enter key for password
     document.getElementById('passwordInput').addEventListener('keypress', e => {
       if (e.key === 'Enter') checkPassword();
     });
@@ -1788,6 +2762,14 @@
       arrow.classList.toggle('open');
     }
     
+    // Day toggle
+    function toggleDay(header) {
+      const details = header.nextElementSibling;
+      const arrow = header.querySelector('.day-expand');
+      details.classList.toggle('open');
+      arrow.classList.toggle('open');
+    }
+    
     // Modal
     function showModal(person) {
       const doc = docs[person];
@@ -1827,7 +2809,7 @@
       document.getElementById('modal').classList.remove('open');
     }
     
-    // Currency converter
+    // Currency
     function convertCurrency() {
       const eur = parseFloat(document.getElementById('eurInput').value) || 0;
       const thb = Math.round(eur * THB_RATE);
@@ -1839,25 +2821,28 @@
       convertCurrency();
     }
     
-    // Todo list
+    // Todos
     let todos = [];
     
     function loadTodos() {
-      const saved = localStorage.getItem('thailand-todos');
+      const saved = localStorage.getItem('thailand-todos-v2');
       if (saved) {
         todos = JSON.parse(saved);
       } else {
         todos = [
-          { id: 1, text: 'Exchange some THB at airport', done: false },
-          { id: 2, text: 'Buy Thai SIM card', done: false },
-          { id: 3, text: 'Book airport transfer to Ariyasom', done: false },
+          { id: 1, text: 'Buy Thai SIM card at airport', done: false },
+          { id: 2, text: 'Exchange €200 THB', done: false },
+          { id: 3, text: 'Book Khao Sok day trip', done: false },
+          { id: 4, text: 'Book Similan Islands tour', done: false },
+          { id: 5, text: 'Reserve spa at Aleenta', done: false },
+          { id: 6, text: 'Book transfer HKT → Khao Lak', done: false },
         ];
       }
       renderTodos();
     }
     
     function saveTodos() {
-      localStorage.setItem('thailand-todos', JSON.stringify(todos));
+      localStorage.setItem('thailand-todos-v2', JSON.stringify(todos));
     }
     
     function renderTodos() {
@@ -1865,12 +2850,7 @@
       const progress = document.getElementById('todoProgress');
       
       if (todos.length === 0) {
-        list.innerHTML = `
-          <div class="todo-empty">
-            <span>📝</span>
-            <p>No tasks yet. Add something!</p>
-          </div>
-        `;
+        list.innerHTML = '<div class="todo-empty"><span>📝</span><p>No tasks yet!</p></div>';
         progress.innerHTML = '';
         return;
       }
@@ -1925,13 +2905,12 @@
       renderTodos();
     }
     
-    // Enter key for todo input
     document.getElementById('todoInput').addEventListener('keypress', e => {
       if (e.key === 'Enter') addTodo();
     });
     
-    // Initialize
     loadTodos();
   </script>
+
 </body>
 </html>
